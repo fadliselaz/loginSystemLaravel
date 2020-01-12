@@ -49,3 +49,16 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+
+
+catatan : 
+
+buatlah sebuah database baru, dan jangan lupa masukan datanya ke .env
+
+silakan masuk ke terminal dan masuk ke folder root laravel ini,
+ketikan :
+
+>> php artisan migrate
+
+akan terbuat sebuah table baru berupa user dan lainnya.
+
