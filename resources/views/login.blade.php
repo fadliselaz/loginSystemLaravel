@@ -23,15 +23,28 @@
   <div class="container">
     <div class="row loginArea">
       <div class="col-md-4">
+        @if($err)
+          <div class="alert alert-danger" role="alert">
+            username atau password salah..!!
+          </div>
+        @endif
 
       <form class="form-signin" method="POST" action="{{route('rLogin')}}">
           {{csrf_field()}}
+
         <h1 class="h3 mb-3 font-weight-normal">Login {{config('app.name')}}</h1>
-          <label for="inputEmail" class="sr-only">Email address</label>
-          <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required"
-            autofocus="autofocus">
-          <label for="inputPassword" class="sr-only">Password</label>
-          <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="required">
+        
+          <div class="form-group">
+            <label for="inputEmail" class="sr-only">Email address</label>
+            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required" autofocus="autofocus" name="inputEmail" value="{{old('inputEmail')}}">
+          </div>
+       
+          <div class="form-group">
+            <label for="inputPassword" class="sr-only">Password</label>
+          <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="required"  name="inputPassword">
+  
+          </div>
+       
           <div class="checkbox mb-3">
             <label>
               <input type="checkbox" value="remember-me">

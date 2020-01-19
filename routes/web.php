@@ -11,15 +11,20 @@
 |
 */
 
-Route::get('/', function () {
-    return view('login');
-});
+Route::get('/', 'AuthController@getLogin');
 
-Route::get('/login', 'AuthController@getLogin');
-Route::post('/login', 'AuthController@postLogin')->name('rLogin');
+Route::get('/login', 'AuthController@getLogin')->middleware('guest')->name('gLogin');
+Route::post('/login', 'AuthController@postLogin')->middleware('guest')->name('rLogin');
 
-Route::get('/register', 'AuthController@getRegister');
-Route::post('/register', 'AuthController@postRegister')->name('register');
+Route::get('/register', 'AuthController@getRegister')->middleware('guest');
+Route::post('/register', 'AuthController@postRegister')->middleware('guest')->name('register');
 Route::get('/home', function () {
-    return redirect('home');
+    return view('home');
+    // return dd(Auth::user());
+    //user diambil dari modal user
 })->name('home');
+
+Route::get('/logout', 'AuthController@logout')->middleware('auth')->name('logout');
+Route::get('welcome', function () {
+    return view('wellcome');
+})->middleware('auth');

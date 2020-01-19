@@ -60,7 +60,7 @@
                     
                     <div class="form-group">
                         <label for="inputPassword" class="sr-only">Password</label>
-                        <input type="password" id="inputPassword" name="password" class="form-control {{$errors->has('password') ? 'is-invalid' : ''}}" placeholder="Password"
+                        <input type="password" id="inputPassword" name="inputPassword" class="form-control {{$errors->has('password') ? 'is-invalid' : ''}}" placeholder="Password"
                         >
                         <div class="invalid-feedback">
                             <small>password min: 6 char / tidak sama</small>

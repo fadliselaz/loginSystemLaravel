@@ -9,15 +9,21 @@ class AuthController extends Controller
 {
     public function getlogin()
     {
-        return view('login');
+        $data['err'] = false;
+        return view('login', $data);
     }
 
     public function postLogin(Request $req)
     {
-        if (!\Auth::attempt([
-            'name' => $req->inputName,
+        $success = \Auth::attempt([
+            'email' => $req->inputEmail,
             'password' => $req->inputPassword
-        ])) {
+        ]);
+
+        if (!$success) {
+            $data['err'] = true;
+            return view('login', $data);
+        } else {
             return redirect()->route('home');
         }
     }
@@ -34,7 +40,7 @@ class AuthController extends Controller
         $this->validate($req, [
             'inputName' => 'required|min:5',
             'inputEmail' => 'required|min:5|email|unique:users,email',
-            'password' => 'required|same:password2'
+            'inputPassword' => 'required|same:password2'
         ]);
 
         User::create([
@@ -45,5 +51,11 @@ class AuthController extends Controller
 
         $data['reg'] = true;
         return view('/register', $data);
+    }
+
+    public function logout()
+    {
+        \Auth::logout();
+        return redirect()->route('gLogin');
     }
 }
